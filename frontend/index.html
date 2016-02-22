@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/myApp.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/config.js"></script>
+    <script src="app/accounts/accounts.module.js"></script>
+    <script src="app/accounts/accounts.controller.js"></script>
+    <script src="app/accounts/accounts.service.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">myApp</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Accounts</div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion" ng-controller="myApp.accounts.controller as ac" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default" ng-repeat="account in ac.accounts">
+                        <div class="panel" role="tab" id="{{'heading' + $index}}">
+                            <div class="panel-body clearfix">
+                                <div class="thumbnail pull-left gap-right avatar">
+                                    <img class="img user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                                </div>
+                                <div class="account-details-container">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="{{'#collapse' + $index}}" aria-expanded="true" aria-controls="{{'collapse' + $index}}">
+                                        <h5 class="panel-title">{{account.name}}</h5>
+                                    </a>
+                                    <div class="account-details">
+                                        <p>
+                                            <strong>Login: </strong>{{account.login}}
+                                        </p>
+                                        <p>
+                                            <strong>Id: </strong>{{$index}}
+                                        </p>
+                                        <p>
+                                            <strong>Email: </strong>{{account.email}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="{{'collapse' + $index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
+                            <div class="panel-body">
+                                <div class="account-details">
+                                    <p>
+                                        <strong>Age: </strong>{{account.age}}
+                                    </p>
+                                    <p>
+                                        <strong>Gender: </strong>{{account.gender}}
+                                    </p>
+                                    <p>
+                                        <strong>Phone number: </strong>{{account.phoneNumber}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

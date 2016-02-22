@@ -1,0 +1,41 @@
+#accordion>div.panel {
+    border-style: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.gap-right {
+    margin-right: 10px;
+}
+
+.avatar {
+    margin-bottom: 0px;
+}
+
+.avatar>img {
+    width: 70px;
+}
+
+.divider-vertical {
+    height: 9px;
+    margin: 0 9px;
+    border-right: 1px solid #ffffff;
+    border-left: 1px solid #333;
+}
+
+.account-details-container {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.account-details-container a>h5 {
+    margin-bottom:4px;
+}
+
+.account-details {
+    font-size: 12px;
+}
+
+.account-details p {
+    margin-bottom: 2px;
+}
