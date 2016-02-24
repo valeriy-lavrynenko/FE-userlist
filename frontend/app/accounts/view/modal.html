@@ -1,0 +1,66 @@
+<div class="modal fade" id="modifyAccountPopup" tabindex="-1" role="dialog" aria-labelledby="Account">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <form name="accountEditForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uName.$valid, 'has-error':accountEditForm.uName.$dirty && accountEditForm.uName.$invalid}">
+                        <label for="formName">Name</label>
+                        <input type="text" class="form-control" id="formName" ng-model="ac.account.name" ng-pattern="/^\w{3,15}$/g" placeholder="Name" name="uName" required="">
+                        <span class="help-block" ng-show="accountEditForm.uName.$error.required && accountEditForm.uName.$dirty">Field is required</span>
+                        <span class="help-block" ng-show="accountEditForm.uName.$error.pattern && accountEditForm.uName.$dirty">Name - text field 3..15 characters</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uLogin.$valid, 'has-error':accountEditForm.uLogin.$dirty && accountEditForm.uLogin.$invalid}">
+                        <label for="formLogin">Login</label>
+                        <input type="text" class="form-control" id="formLogin" ng-model="ac.account.login" ng-pattern="/^[\d\w]{5,15}$/g" placeholder="Login" name="uLogin" required="">
+                        <span class="help-block" ng-show="accountEditForm.uLogin.$error.required && accountEditForm.uLogin.$dirty">Field is required</span>
+                        <span class="help-block" ng-show="accountEditForm.uLogin.$error.pattern && accountEditForm.uLogin.$dirty">Login - text field 5..15 characters</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uAge.$valid, 'has-error':accountEditForm.uAge.$dirty && accountEditForm.uAge.$invalid}">
+                        <label for="formAge">Age</label>
+                        <input type="number" class="form-control" id="formAge" ng-model="ac.account.age" placeholder="Age" name="uAge" required="" min="18" max="100" integer>
+                        <span class="help-block" ng-show="accountEditForm.uAge.$error.required && accountEditForm.uAge.$dirty">Field is required</span>
+                        <span class="help-block" ng-show="(accountEditForm.uAge.$error.number || accountEditForm.uAge.$error.min || accountEditForm.uAge.$error.max)  && accountEditForm.uAge.$dirty">Age - number field - integer 18..100</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uGender.$valid, 'has-error':accountEditForm.uGender.$dirty && accountEditForm.uGender.$invalid}">
+                        <label for="formGender">Gender</label>
+                        <select class="form-control" id="formGender" ng-model="ac.account.gender" placeholder="Gender" name="uGender" required="">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <span class="help-block" ng-show="accountEditForm.uGender.$error.required && accountEditForm.uGender.$dirty">Field is required</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uPhone.$valid, 'has-error':accountEditForm.uPhone.$dirty && accountEditForm.uPhone.$invalid}">
+                        <label for="formPhone">Phone</label>
+                        <input type="text" class="form-control" id="formPhone" ng-model="ac.account.phoneNumber" ng-pattern="/\+380\(\d{2}\)\d{3}-\d{2}-\d{2}/g" placeholder="Phone" name="uPhone" required="">
+                        <span class="help-block" ng-show="accountEditForm.uPhone.$error.required && accountEditForm.uPhone.$dirty">Field is required</span>
+                        <span class="help-block" ng-show="accountEditForm.uPhone.$error.pattern && accountEditForm.uPhone.$dirty">PhoneNumber - text field with following mask: +380(##)###-##-## (# - is a digit)</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-success':accountEditForm.uEmail.$valid, 'has-error':accountEditForm.uEmail.$dirty && accountEditForm.uEmail.$invalid}">
+                        <label for="formEmail">Email address</label>
+                        <input type="email" class="form-control" id="formEmail" ng-model="ac.account.email" placeholder="Email" name="uEmail" required="">
+                        <span class="help-block" ng-show="accountEditForm.uEmail.$error.required && accountEditForm.uEmail.$dirty">Field is required</span>
+                        <span class="help-block" ng-show="accountEditForm.uEmail.$error.email && accountEditForm.uEmail.$dirty">Email - text field with following requirements pattern: A@B.C</span>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default" data-dismiss="modal" ng-click="ac.resetForm(accountEditForm)">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-click="ac.createAccount(ac.account); ac.resetForm(accountEditForm)" data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Save changes</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

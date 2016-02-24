@@ -3,6 +3,8 @@
 
     angular.module('myApp', [
         'myApp.accounts',
-        'myApp.core'
-    ]);
+        'myApp.core',
+        'ngRoute'
+    ])
+
 })();

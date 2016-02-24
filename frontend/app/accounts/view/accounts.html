@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Accounts</h4></div>
+    <div class="panel-body">
+
+        <table class="table" data-ng-init="ac.refreshAccounts()">
+            <tbody>
+                <tr ng-repeat="account in ac.data.accounts">
+                    <td>
+                        <div class="thumbnail pull-left gap-right avatar">
+                            <img class="img user-photo" ng-src="{{account.avatarUrl}}" />
+                        </div>
+                        <div class="account-details-container">
+                            <a role="button" href="{{'#/accounts/' + account.id}}">
+                                <h5 class="panel-title">{{account.name}}</h5>
+                            </a>
+                            <div class="account-details">
+                                <p>
+                                    <strong>Login: </strong>{{account.login}}
+                                </p>
+                                <p>
+                                    <strong>Id: </strong>{{account.id}}
+                                </p>
+                                <p>
+                                    <strong>Email: </strong>{{account.email}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="btn-group pull-right" role="group">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modifyAccountPopup">Add</button>
+        </div>
+    </div>
+</div>
