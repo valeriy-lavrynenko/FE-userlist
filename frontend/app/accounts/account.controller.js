@@ -2,21 +2,15 @@
     'use strict';
 
     angular.module('myApp.accounts')
-        .controller('myApp.account.controller', ['myApp.accounts.service', 'myApp.accounts.service.data', '$routeParams', function (service, data, $routeParams) {
-            var scope = this;
-            scope.refreshAccount = function () {
-                service.getAccount($routeParams.accountId)
-                    .then(function (account) {
-                        scope.account = account;
-                    });
-            };
+        .controller('myApp.account.controller',
+            ['myApp.accounts.service', 'myApp.accounts.service.data', 'myApp.accounts.service.accountToLoad', '$routeParams',
+                function (service, data, accountToLoad, $routeParams) {
+                    var scope = this;
 
-            scope.resetForm = function (form) {
-                if(form){
-                    form.$setPristine();
-                    form.$setUntouched();
-                }
-                scope.account = null;
-            };
-        }]);
+                    scope.editAccount = function (account) {
+                        accountToLoad.load(account);
+                    };
+                    data.refreshAccount($routeParams.accountId);
+                    scope.data = data;
+                }]);
 })();

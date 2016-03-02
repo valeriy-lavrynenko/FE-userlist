@@ -1,32 +1,43 @@
+
 <div class="panel panel-default">
-    <div class="panel-heading"><h4>{{ac.account.name}}</h4></div>
+
     <div class="panel-body" data-ng-init="ac.refreshAccount()">
-        <div class="thumbnail pull-left gap-right avatar clearfix">
-            <img class="img user-photo" ng-src="{{ac.account.avatarUrl}}" />
+        <div class="clearfix panel panel-default">
+            <div class="thumbnail pull-left gap-right avatar clearfix">
+                <img class="img user-photo" ng-src="{{ac.data.account.avatarUrl}}" />
+            </div>
+            <h4>{{ac.data.account.name}}</h4>
         </div>
-        <div class="account-details-container">
-            <h5 class="panel-title"></h5>
-            <div class="account-details">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Details</div>
+            <div class="account-details panel-body">
 
                 <table class="table">
-                    <tr><td><strong>Name: </strong></td><td>{{ac.account.name}}</td></tr>
-                    <tr><td><strong>Login: </strong></td><td>{{ac.account.login}}</td></tr>
-                    <tr><td><strong>Id: </strong></td><td>{{ac.account.id}}</td></tr>
-                    <tr><td><strong>Email: </strong></td><td>{{ac.account.email}}</td></tr>
-                    <tr><td><strong>Age: </strong></td><td>{{ac.account.age}}</td></tr>
-                    <tr><td><strong>Gender: </strong></td><td>{{ac.account.gender}}</td></tr>
-                    <tr><td><strong>Phone number: </strong></td><td>{{ac.account.phoneNumber}}</td></tr>
+                    <tr><td><strong>Name: </strong></td><td>{{ac.data.account.name}}</td></tr>
+                    <tr><td><strong>Login: </strong></td><td>{{ac.data.account.login}}</td></tr>
+                    <tr><td><strong>Id: </strong></td><td>{{ac.data.account.id}}</td></tr>
+                    <tr><td><strong>Email: </strong></td><td>{{ac.data.account.email}}</td></tr>
+                    <tr><td><strong>Age: </strong></td><td>{{ac.data.account.age}}</td></tr>
+                    <tr><td><strong>Gender: </strong></td><td>{{ac.data.account.gender}}</td></tr>
+                    <tr><td><strong>Phone number: </strong></td><td>{{ac.data.account.phoneNumber}}</td></tr>
 
-                </p>
                 </table>
             </div>
 
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Activities</div>
+            <div class="panel-body">
+                <hc-pie-chart title="" data="ac.data">123123</hc-pie-chart>
+            </div>
+        </div>
+
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right" role="group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyAccountPopup">Edit</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modifyAccountPopup">Remove</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="ac.editAccount(ac.data.account); modal.loadForm(); modal.mode.setEdit()">Edit</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modifyAccountRemovePopup">Remove</button>
         </div>
     </div>
 </div>

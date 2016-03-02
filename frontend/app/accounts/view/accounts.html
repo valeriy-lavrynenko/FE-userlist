@@ -2,7 +2,7 @@
     <div class="panel-heading"><h4>Accounts</h4></div>
     <div class="panel-body">
 
-        <table class="table" data-ng-init="ac.refreshAccounts()">
+        <table class="table">
             <tbody>
                 <tr ng-repeat="account in ac.data.accounts">
                     <td>
@@ -32,7 +32,7 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="btn-group pull-right" role="group">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modifyAccountPopup">Add</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="modal.mode.setCreate()">Add</button>
         </div>
     </div>
 </div>
