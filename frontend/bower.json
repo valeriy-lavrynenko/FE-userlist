@@ -1,0 +1,11 @@
+{
+  "name": "myApp",
+  "description": "It can do something",
+  "dependencies": {
+    "jquery": "2.2.1",
+    "bootstrap": "3.3.6",
+    "angular": "1.4.8",
+    "angular-route": "1.4.8",
+    "highcharts": "4.2.3"
+  }
+}
