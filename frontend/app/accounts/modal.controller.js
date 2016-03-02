@@ -29,12 +29,21 @@
                             })
                     };
 
-                    scope.resetForm = function (form) {
+                    scope.resetForm = function () {
+                        var form = scope.accountEditForm;
+                        //scope.account = null;
+                        scope.account = {
+                            name: '',
+                            login: '',
+                            age: '',
+                            gender: '',
+                            phoneNumber: '',
+                            email: ''
+                        };
                         if(form){
-                            form.$setPristine();
-                            form.$setUntouched();
+                            form.$setPristine(true);
+                            form.$setUntouched(true);
                         }
-                        scope.account = null;
                     };
 
                     scope.mode = new function () {

@@ -13,14 +13,14 @@
 
                     <div class="form-group" ng-class="{'has-success':accountEditForm.uName.$valid, 'has-error':accountEditForm.uName.$dirty && accountEditForm.uName.$invalid}">
                         <label for="formName">Name</label>
-                        <input type="text" class="form-control" id="formName" ng-model="modal.account.name" ng-pattern="/^\w{3,15}$/g" placeholder="Name" name="uName" required="">
+                        <input type="text" class="form-control" id="formName" ng-model="modal.account.name" ng-pattern="/^[\w\s]{3,15}$/i" placeholder="Name" name="uName" required="">
                         <span class="help-block" ng-show="accountEditForm.uName.$error.required && accountEditForm.uName.$dirty">Field is required</span>
                         <span class="help-block" ng-show="accountEditForm.uName.$error.pattern && accountEditForm.uName.$dirty">Name - text field 3..15 characters</span>
                     </div>
 
                     <div class="form-group" ng-class="{'has-success':accountEditForm.uLogin.$valid, 'has-error':accountEditForm.uLogin.$dirty && accountEditForm.uLogin.$invalid}">
                         <label for="formLogin">Login</label>
-                        <input type="text" class="form-control" id="formLogin" ng-model="modal.account.login" ng-pattern="/^[\d\w]{5,15}$/g" placeholder="Login" name="uLogin" required="">
+                        <input type="text" class="form-control" id="formLogin" ng-model="modal.account.login" ng-pattern="/^[\d\w]{5,15}$/i" placeholder="Login" name="uLogin" required="">
                         <span class="help-block" ng-show="accountEditForm.uLogin.$error.required && accountEditForm.uLogin.$dirty">Field is required</span>
                         <span class="help-block" ng-show="accountEditForm.uLogin.$error.pattern && accountEditForm.uLogin.$dirty">Login - text field 5..15 characters</span>
                     </div>
@@ -59,9 +59,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-default" data-dismiss="modal" ng-click="modal.resetForm(accountEditForm)">Close</button>
-                    <button type="submit" class="btn btn-primary" ng-show="modal.mode.isCreate()" ng-click="modal.createAccount(modal.account); modal.resetForm(accountEditForm)" data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Create</button>
-                    <button type="submit" class="btn btn-primary" ng-show="modal.mode.isEdit()" ng-click="modal.updateAccount(modal.account); modal.resetForm(accountEditForm)" data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Update</button>
+                    <button type="reset" class="btn btn-default" data-dismiss="modal" ng-click="modal.resetForm()">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-show="modal.mode.isCreate()" ng-click="modal.createAccount(modal.account); modal.resetForm()" data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Create</button>
+                    <button type="submit" class="btn btn-primary" ng-show="modal.mode.isEdit()" ng-click="modal.updateAccount(modal.account); modal.resetForm()" data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Update</button>
                 </div>
 
             </form>
