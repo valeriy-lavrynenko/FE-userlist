@@ -39,3 +39,9 @@
 .account-details p {
     margin-bottom: 2px;
 }
+
+hc-pie-chart {
+    min-width: 900px;
+    height: 400px;
+    margin: auto auto
+}

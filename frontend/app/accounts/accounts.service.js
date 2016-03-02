@@ -28,6 +28,10 @@
                     resolve(
                         $http.get(config.backendAddress + 'Account/'+ id)
                             .then(function (response) {
+                                var activities = response.data.activities;
+                                activities.sort(function (a, b) {
+                                    return Date.parse(a.date) - Date.parse(b.date);
+                                });
                                 return response.data;
                             }, function (response) {
                                 console.error(response.data);
