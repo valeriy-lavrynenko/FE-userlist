@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('myApp.accounts')
-        .directive('hcPieChart', ['dateFilter', function (dateFilter) {
+    angular.module('accountsModule')
+        .directive('hcPieChart', ['dateFilter', '$window', function (dateFilter, $window) {
             return {
                 restrict: 'E',
                 template: '<div></div>',
@@ -12,11 +12,11 @@
                 },
                 link: function (scope, element) {
                     scope.$watch(function () {
-                        return scope.data.account || false
+                        return scope.data || false
                     }, function (account)
                     {
                         if(!account || !account.activities) return;
-                        Highcharts.chart(element[0], {
+                        var chart = Highcharts.chart(element[0], {
                             chart: {
                                 type: 'column'
                             },
@@ -37,6 +37,9 @@
                             }]
                         });
 
+                        angular.element($window).on('resize', function () {
+                            chart.reflow();
+                        });
                     })
                 }
             };

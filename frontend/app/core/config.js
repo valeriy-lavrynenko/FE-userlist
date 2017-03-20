@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('myApp.core')
-        .constant('myApp.core.config', {
+    angular.module('coreModule')
+        .constant('coreConfig', {
             backendAddress: 'http://localhost:1337/'
         })
 })();

@@ -1,37 +1,57 @@
 (function () {
     'use strict';
 
-    angular.module('myApp.accounts')
-        .controller('myApp.accounts.modal.controller',
-            ['myApp.accounts.service', 'myApp.accounts.service.accountToLoad', 'myApp.accounts.service.data', '$location',
-                function (service, accountToLoad, data, location) {
+    angular.module('accountsModule')
+        .controller('modalController',
+            ['accountsDataFactory', '$location', '$rootScope',
+                function (accountsDataFactory, $location, $rootScope) {
 
-                    var scope = this;
+                    var scope = this,
+                        reloadAccounts = function () {
+                            return accountsService.getAccounts().$promise
+                                .then(function (accounts) {
+                                    $rootScope.$emit('accounts:update', accounts);
+                                });
+                        },
+                        reloadAccount = function (account) {
+                            $rootScope.$emit('account:update', account);
+                            return reloadAccounts();
+                        };
 
-                    scope.createAccount = function (account) {
-                        return service.createAccount(account)
+
+                    scope.createAccount = function () {
+                        return accountsService.createAccount(scope.account).$promise
                             .then(function () {
-                                return data.refreshAccounts();
+                                return reloadAccounts();
                             })
                     };
 
-                    scope.updateAccount = function (account) {
-                        return service.updateAccount(account)
+                    scope.updateAccount = function () {
+                        // TODO: disable  buttons
+                        // TODO: show spinner or progress indicator
+
+                        return accountsService.updateAccount({id: scope.account.id}, scope.account).$promise
                             .then(function () {
-                                return data.refreshAccount(account.id);
+                                scope.resetForm();
+                                return reloadAccount(account);
                             })
+                            .finally(function () {
+                                // TODO: remove spinner or else
+                            });
                     };
 
                     scope.removeCurrentAccount = function () {
-                        service.removeAccount(data.account.id)
+                        return accountsService.removeAccount({id: scope.account.id}).$promise
                             .then(function () {
-                                location.url('/accounts')
+                                return reloadAccounts();
+                            })
+                            .then(function () {
+                                $location.url('/accounts')
                             })
                     };
 
                     scope.resetForm = function () {
                         var form = scope.accountEditForm;
-                        //scope.account = null;
                         scope.account = {
                             name: '',
                             login: '',
@@ -40,7 +60,7 @@
                             phoneNumber: '',
                             email: ''
                         };
-                        if(form){
+                        if (form) {
                             form.$setPristine(true);
                             form.$setUntouched(true);
                         }
@@ -55,7 +75,7 @@
 
                         this.isEdit = function () {
                             return mode == 'edit';
-                        }
+                        };
 
                         this.setCreate = function () {
                             mode = 'create';
@@ -66,10 +86,16 @@
                         }
                     };
 
-                    scope.loadForm = function () {
-                        scope.account = accountToLoad.get();
-                    };
+                    $rootScope.$on('account:edit', function (event, data) {
+                        scope.account = data;
+                        scope.mode.setEdit();
+                    });
 
+                    $rootScope.$on('account:create', function (event, data) {
+                        scope.account = {};
+                        scope.mode.setCreate();
+                        scope.resetForm();
+                    })
 
                 }
             ]);

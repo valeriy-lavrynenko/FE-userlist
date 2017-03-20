@@ -9,21 +9,21 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="app/app.module.js"></script>
     <script src="app/core/core.module.js"></script>
     <script src="app/core/router.js"></script>
     <script src="app/core/config.js"></script>
     <script src="app/accounts/accounts.module.js"></script>
+    <script src="app/accounts/accounts.factory.js"></script>
     <script src="app/accounts/accounts.controller.js"></script>
     <script src="app/accounts/account.controller.js"></script>
     <script src="app/accounts/modal.controller.js"></script>
     <script src="app/accounts/chart.directive.js"></script>
-
-    <script src="app/accounts/accounts.service.js"></script>
 </head>
 
-<body ng-controller="myApp.accounts.modal.controller as modal">
+<body>
     <div class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -35,7 +35,9 @@
         <ng-view></ng-view>
 
     </div>
-    <ng-include src="'app/accounts/view/modal-edit.html'"></ng-include></div>
-    <ng-include src="'app/accounts/view/modal-remove.html'"></ng-include></div>
+    <div ng-controller="modalController as modalVm">
+        <ng-include src="'app/accounts/view/modal-edit.html'"></ng-include>
+        <ng-include src="'app/accounts/view/modal-remove.html'"></ng-include>
+    </div>
 </body>
 </html>

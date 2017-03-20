@@ -1,16 +1,23 @@
 (function () {
     'use strict';
 
-    angular.module('myApp.accounts')
-        .controller('myApp.account.controller',
-            ['myApp.accounts.service', 'myApp.accounts.service.data', 'myApp.accounts.service.accountToLoad', '$routeParams',
-                function (service, data, accountToLoad, $routeParams) {
+    angular.module('accountsModule')
+        .controller('accountController',
+            ['accountsDataFactory', '$routeParams', '$rootScope',
+                function (accountsDataFactory, $routeParams, $rootScope) {
                     var scope = this;
 
-                    scope.editAccount = function (account) {
-                        accountToLoad.load(account);
+                    scope.editAccount = function () {
+                        $rootScope.$emit('account:edit', angular.copy(scope.account));
                     };
-                    data.refreshAccount($routeParams.accountId);
-                    scope.data = data;
+
+                    $rootScope.$on('account:update', function (event, data) {
+                        scope.account = data;
+                    });
+
+                    accountsDataFactory.getAccount({id: $routeParams.accountId}).$promise
+                        .then(function (account) {
+                            $rootScope.$emit('account:update', account);
+                        });
                 }]);
 })();

@@ -7,11 +7,11 @@
                 $routeProvider.
                 when('/accounts', {
                     templateUrl: 'app/accounts/view/accounts.html',
-                    controller: 'myApp.accounts.controller as ac'
+                    controller: 'accountsController as accountsVm'
                 }).
                 when('/accounts/:accountId', {
                     templateUrl: 'app/accounts/view/account.html',
-                    controller: 'myApp.account.controller as ac'
+                    controller: 'accountController as accountVm'
                 }).
                 otherwise({
                     redirectTo: '/accounts'

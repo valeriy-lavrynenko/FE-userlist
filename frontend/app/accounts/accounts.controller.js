@@ -1,10 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('myApp.accounts')
-        .controller('myApp.accounts.controller', ['myApp.accounts.service', 'myApp.accounts.service.data', function (service, data) {
+    angular.module('accountsModule')
+        .controller('accountsController', ['accountsDataFactory', '$rootScope', function (accountsDataFactory, $rootScope) {
             var scope = this;
-            data.refreshAccounts();
-            scope.data = data;
+
+            scope.createAccount = function () {
+                $rootScope.$emit('account:create');
+            };
+
+            $rootScope.$on('accounts:update', function (event, data) {
+                scope.accounts = data;
+            });
+
+            accountsDataFactory.getAccounts().$promise
+                .then(function (accounts) {
+                    $rootScope.$emit('accounts:update', accounts);
+                });
         }]);
 })();

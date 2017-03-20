@@ -1,12 +1,12 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-body" data-ng-init="ac.refreshAccount()">
+    <div class="panel-body" data-ng-init="accountVm.refreshAccount()">
         <div class="clearfix panel panel-default">
             <div class="thumbnail pull-left gap-right avatar clearfix">
-                <img class="img user-photo" ng-src="{{ac.data.account.avatarUrl}}" />
+                <img class="img user-photo" ng-src="{{accountVm.account.avatarUrl}}" />
             </div>
-            <h4>{{ac.data.account.name}}</h4>
+            <h4>{{accountVm.account.name}}</h4>
         </div>
 
         <div class="panel panel-default">
@@ -14,13 +14,13 @@
             <div class="account-details panel-body">
 
                 <table class="table">
-                    <tr><td><strong>Name: </strong></td><td>{{ac.data.account.name}}</td></tr>
-                    <tr><td><strong>Login: </strong></td><td>{{ac.data.account.login}}</td></tr>
-                    <tr><td><strong>Id: </strong></td><td>{{ac.data.account.id}}</td></tr>
-                    <tr><td><strong>Email: </strong></td><td>{{ac.data.account.email}}</td></tr>
-                    <tr><td><strong>Age: </strong></td><td>{{ac.data.account.age}}</td></tr>
-                    <tr><td><strong>Gender: </strong></td><td>{{ac.data.account.gender}}</td></tr>
-                    <tr><td><strong>Phone number: </strong></td><td>{{ac.data.account.phoneNumber}}</td></tr>
+                    <tr><td><strong>Name: </strong></td><td>{{accountVm.account.name}}</td></tr>
+                    <tr><td><strong>Login: </strong></td><td>{{accountVm.account.login}}</td></tr>
+                    <tr><td><strong>Id: </strong></td><td>{{accountVm.account.id}}</td></tr>
+                    <tr><td><strong>Email: </strong></td><td>{{accountVm.account.email}}</td></tr>
+                    <tr><td><strong>Age: </strong></td><td>{{accountVm.account.age}}</td></tr>
+                    <tr><td><strong>Gender: </strong></td><td>{{accountVm.account.gender}}</td></tr>
+                    <tr><td><strong>Phone number: </strong></td><td>{{accountVm.account.phoneNumber}}</td></tr>
 
                 </table>
             </div>
@@ -29,15 +29,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Activities</div>
             <div class="panel-body">
-                <hc-pie-chart title="" data="ac.data">123123</hc-pie-chart>
+                <hc-pie-chart title="" data="accountVm.account">123123</hc-pie-chart>
             </div>
         </div>
 
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right" role="group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="ac.editAccount(ac.data.account); modal.loadForm(); modal.mode.setEdit()">Edit</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modifyAccountRemovePopup">Remove</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="accountVm.editAccount();">Edit</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modifyAccountRemovePopup" ng-click="accountVm.editAccount();">Remove</button>
         </div>
     </div>
 </div>

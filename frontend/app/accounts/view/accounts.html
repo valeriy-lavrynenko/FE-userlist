@@ -4,7 +4,7 @@
 
         <table class="table">
             <tbody>
-                <tr ng-repeat="account in ac.data.accounts">
+                <tr ng-repeat="account in accountsVm.accounts">
                     <td>
                         <div class="thumbnail pull-left gap-right avatar">
                             <img class="img user-photo" ng-src="{{account.avatarUrl}}" />
@@ -32,7 +32,7 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="btn-group pull-right" role="group">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="modal.mode.setCreate()">Add</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="accountsVm.createAccount()">Add</button>
         </div>
     </div>
 </div>
