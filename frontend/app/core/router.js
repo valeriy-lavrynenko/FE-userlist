@@ -1,3 +1,4 @@
+//TODO: Rename controller
 (function () {
     'use strict';
 

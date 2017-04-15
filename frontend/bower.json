@@ -7,6 +7,10 @@
     "angular": "1.4.8",
     "angular-route": "1.4.8",
     "angular-resource": "1.4.8",
-    "highcharts": "4.2.3"
+    "highcharts": "4.2.3",
+    "angular-animate": "1.4.8",
+    "angular-touch": "1.4.8",
+    "angular-bootstrap": "2.5.0",
+    "highcharts-ng": "1.0.1"
   }
 }

@@ -5,7 +5,10 @@
         'accountsModule',
         'coreModule',
         'ngResource',
-        'ngRoute'
+        'ngRoute',
+        'ngTouch',
+        'ngAnimate',
+        'ui.bootstrap'
     ])
 
 })();
