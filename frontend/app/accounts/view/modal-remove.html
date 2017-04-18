@@ -1,17 +1,12 @@
-<div class="modal fade" id="modifyAccountRemovePopup" tabindex="-1" role="dialog" aria-labelledby="Delere">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-                <div class="modal-body">
-                <div><h5>Are sure want to delete account?</h5></div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-default" data-dismiss="modal" ng-click="">Cancel</button>
-                    <button type="submit" class="btn btn-danger" ng-click="modalVm.removeCurrentAccount()" data-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
+<div class="modal-header">
+    <button type="button" class="close" ng-click="modalVm.$dismiss('close')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+</div>
+<div class="modal-body">
+    <div><h5>Are sure want to delete account?</h5></div>
+    <div class="modal-footer">
+        <button type="reset" class="btn btn-default" ng-click="modalVm.$dismiss('close')">Cancel</button>
+        <button type="submit" class="btn btn-danger" ng-click="modalVm.$close()" data-dismiss="modal">Ok
+        </button>
     </div>
 </div>

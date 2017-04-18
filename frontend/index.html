@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/myApp.css">
+    <link rel="stylesheet" href="bower_components/highcharts-ng/dist/highcharts-ng.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts/highcharts.src.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
     <script src="app/app.module.js"></script>
     <script src="app/core/core.module.js"></script>
     <script src="app/core/router.js"></script>
@@ -23,14 +25,13 @@
     <script src="app/accounts/accounts.controller.js"></script>
     <script src="app/accounts/account.controller.js"></script>
     <script src="app/accounts/modal.controller.js"></script>
-    <script src="app/accounts/chart.directive.js"></script>
 </head>
 
 <body>
     <div class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">myApp</a>
+                <a class="navbar-brand" href="#!">myApp</a>
             </div>
         </div>
     </div>
@@ -39,8 +40,6 @@
 
     </div>
     <div ng-controller="modalController as modalVm">
-        <ng-include src="'app/accounts/view/modal-edit.html'"></ng-include>
-        <ng-include src="'app/accounts/view/modal-remove.html'"></ng-include>
     </div>
 </body>
 </html>

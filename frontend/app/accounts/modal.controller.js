@@ -4,12 +4,12 @@
 
     angular.module('accountsModule')
         .controller('modalController',
-            ['accountsDataFactory', '$location', '$rootScope',
-                function (accountsDataFactory, $location, $rootScope) {
+            ['accountsDataFactory', '$location', '$rootScope', '$uibModal',
+                function (accountsDataFactory, $location, $rootScope, $uibModal) {
 
                     var scope = this,
                         reloadAccounts = function () {
-                            return accountsService.getAccounts().$promise
+                            return accountsDataFactory.getAccounts().$promise
                                 .then(function (accounts) {
                                     $rootScope.$emit('accounts:update', accounts);
                                 });
@@ -19,83 +19,88 @@
                             return reloadAccounts();
                         };
 
+                    scope.removeCurrentAccount = function () {
 
-                    scope.createAccount = function () {
-                        return accountsService.createAccount(scope.account).$promise
-                            .then(function () {
-                                return reloadAccounts();
-                            })
                     };
 
-                    scope.updateAccount = function () {
-                        // TODO: disable  buttons
-                        // TODO: show spinner or progress indicator
+                    var modalInstance = function (account, mode) {
+                        return $uibModal.open({
+                            ariaLabelledBy: 'modal-title',
+                            ariaDescribedBy: 'modal-body',
+                            templateUrl: 'app/accounts/view/modal-edit.html',
+                            bindToController: true,
+                            controller: function () {
+                                this.account = account;
+                                this.mode = {
+                                    mode: mode,
+                                    isCreate: function () {
+                                        return mode == 'create';
+                                    },
+                                    isEdit: function () {
+                                        return mode == 'edit';
+                                    }
+                                }
+                            },
+                            controllerAs: 'modalVm',
+                            size: 'md'
 
-                        return accountsService.updateAccount({id: scope.account.id}, scope.account).$promise
-                            .then(function () {
-                                scope.resetForm();
-                                return reloadAccount(account);
+                        })
+                    };
+
+
+                    $rootScope.$on('account:edit', function (event, data) {
+                        var modal = modalInstance(data, 'edit');
+                        modal.result
+                            .then(function (account) {
+                                // TODO: disable  buttons
+                                // TODO: show spinner or progress indicator
+                                return accountsDataFactory.updateAccount({id: account.id}, account).$promise
+                                    .then(function () {
+                                        return reloadAccount(account);
+                                    });
                             })
                             .finally(function () {
                                 // TODO: remove spinner or else
                             });
-                    };
+                    });
 
-                    scope.removeCurrentAccount = function () {
-                        return accountsService.removeAccount({id: scope.account.id}).$promise
+                    $rootScope.$on('account:create', function (event, data) {
+                        var modal = modalInstance({}, 'create');
+
+                        modal.result
+                            .then(function (account) {
+                                return accountsDataFactory.createAccount(account).$promise;
+                            })
+                            .then(function () {
+                                return reloadAccounts();
+                            });
+
+                    });
+
+                    $rootScope.$on('account:delete', function (event, data) {
+                        var modal = $uibModal.open({
+                            ariaLabelledBy: 'modal-title',
+                            ariaDescribedBy: 'modal-body',
+                            templateUrl: 'app/accounts/view/modal-remove.html',
+                            controller: function () {
+                            },
+                            bindToController: true,
+                            controllerAs: 'modalVm',
+                            size: 'md'
+
+                        });
+
+                        modal.result
+                            .then(function () {
+                                return accountsDataFactory.removeAccount({id: data.id}).$promise;
+                            })
                             .then(function () {
                                 return reloadAccounts();
                             })
                             .then(function () {
-                                $location.url('/accounts')
+                                $location.url('/accounts');
                             })
-                    };
 
-                    scope.resetForm = function () {
-                        var form = scope.accountEditForm;
-                        scope.account = {
-                            name: '',
-                            login: '',
-                            age: '',
-                            gender: '',
-                            phoneNumber: '',
-                            email: ''
-                        };
-                        if (form) {
-                            form.$setPristine(true);
-                            form.$setUntouched(true);
-                        }
-                    };
-
-                    scope.mode = new function () {
-                        var mode = 'create';
-
-                        this.isCreate = function () {
-                            return mode == 'create';
-                        };
-
-                        this.isEdit = function () {
-                            return mode == 'edit';
-                        };
-
-                        this.setCreate = function () {
-                            mode = 'create';
-                        };
-
-                        this.setEdit = function () {
-                            mode = 'edit';
-                        }
-                    };
-
-                    $rootScope.$on('account:edit', function (event, data) {
-                        scope.account = data;
-                        scope.mode.setEdit();
-                    });
-
-                    $rootScope.$on('account:create', function (event, data) {
-                        scope.account = {};
-                        scope.mode.setCreate();
-                        scope.resetForm();
                     })
 
                 }

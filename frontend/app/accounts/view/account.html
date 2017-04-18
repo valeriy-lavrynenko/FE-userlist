@@ -29,15 +29,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Activities</div>
             <div class="panel-body">
-                <hc-pie-chart title="" data="accountVm.account">123123</hc-pie-chart>
+                <highchart ng-if="accountVm.account.chart" id="chart1" config="accountVm.account.chart"></highchart>
             </div>
         </div>
 
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right" role="group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyAccountPopup" ng-click="accountVm.editAccount();">Edit</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modifyAccountRemovePopup" ng-click="accountVm.editAccount();">Remove</button>
+            <button type="button" class="btn btn-primary" data-target="#modifyAccountPopup" ng-click="accountVm.editAccount();">Edit</button>
+            <button type="button" class="btn btn-danger" data-target="#modifyAccountRemovePopup" ng-click="accountVm.removeAccount();">Remove</button>
         </div>
     </div>
 </div>

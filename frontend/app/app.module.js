@@ -8,7 +8,8 @@
         'ngRoute',
         'ngTouch',
         'ngAnimate',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'highcharts-ng'
     ])
 
 })();
