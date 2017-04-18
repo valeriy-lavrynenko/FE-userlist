@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><h4>Accounts</h4></div>
+    <div class="panel-heading"><h4>{{accountsVm.txt.panels.accounts}}</h4></div>
     <div class="panel-body">
 
         <table class="table">
@@ -15,13 +15,13 @@
                             </a>
                             <div class="account-details">
                                 <p>
-                                    <strong>Login: </strong>{{account.login}}
+                                    <strong>{{accountsVm.txt.fields.login.label}}: </strong>{{account.login}}
                                 </p>
                                 <p>
-                                    <strong>Id: </strong>{{account.id}}
+                                    <strong>{{accountsVm.txt.fields.id.label}}: </strong>{{account.id}}
                                 </p>
                                 <p>
-                                    <strong>Email: </strong>{{account.email}}
+                                    <strong>{{accountsVm.txt.fields.email.label}}: </strong>{{account.email}}
                                 </p>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="btn-group pull-right" role="group">
-            <button type="button" class="btn btn-success" data-target="#modifyAccountPopup" ng-click="accountsVm.createAccount()">Add</button>
+            <button type="button" class="btn btn-success" data-target="#modifyAccountPopup" ng-click="accountsVm.createAccount()">{{accountsVm.txt.buttons.add}}</button>
         </div>
     </div>
 </div>

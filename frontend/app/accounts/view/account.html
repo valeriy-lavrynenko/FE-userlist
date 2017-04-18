@@ -10,24 +10,22 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Details</div>
+            <div class="panel-heading">{{accountVm.txt.panels.details}}</div>
             <div class="account-details panel-body">
-
                 <table class="table">
-                    <tr><td><strong>Name: </strong></td><td>{{accountVm.account.name}}</td></tr>
-                    <tr><td><strong>Login: </strong></td><td>{{accountVm.account.login}}</td></tr>
-                    <tr><td><strong>Id: </strong></td><td>{{accountVm.account.id}}</td></tr>
-                    <tr><td><strong>Email: </strong></td><td>{{accountVm.account.email}}</td></tr>
-                    <tr><td><strong>Age: </strong></td><td>{{accountVm.account.age}}</td></tr>
-                    <tr><td><strong>Gender: </strong></td><td>{{accountVm.account.gender}}</td></tr>
-                    <tr><td><strong>Phone number: </strong></td><td>{{accountVm.account.phoneNumber}}</td></tr>
-
+                    <tr><td><strong>{{accountVm.txt.fields.name.label}}: </strong></td><td>{{accountVm.account.name}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.login.label}}: </strong></td><td>{{accountVm.account.login}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.id.label}}: </strong></td><td>{{accountVm.account.id}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.email.label}}: </strong></td><td>{{accountVm.account.email}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.age.label}}: </strong></td><td>{{accountVm.account.age}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.gender.label}}: </strong></td><td>{{accountVm.account.gender}}</td></tr>
+                    <tr><td><strong>{{accountVm.txt.fields.phone.label}}: </strong></td><td>{{accountVm.account.phoneNumber}}</td></tr>
                 </table>
             </div>
 
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Activities</div>
+            <div class="panel-heading">{{accountVm.txt.panels.activities}}</div>
             <div class="panel-body">
                 <highchart ng-if="accountVm.account.chart" id="chart1" config="accountVm.account.chart"></highchart>
             </div>
@@ -36,8 +34,8 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right" role="group">
-            <button type="button" class="btn btn-primary" data-target="#modifyAccountPopup" ng-click="accountVm.editAccount();">Edit</button>
-            <button type="button" class="btn btn-danger" data-target="#modifyAccountRemovePopup" ng-click="accountVm.removeAccount();">Remove</button>
+            <button type="button" class="btn btn-primary" data-target="#modifyAccountPopup" ng-click="accountVm.editAccount();">{{accountVm.txt.buttons.edit}}</button>
+            <button type="button" class="btn btn-danger" data-target="#modifyAccountRemovePopup" ng-click="accountVm.removeAccount();">{{accountVm.txt.buttons.remove}}</button>
         </div>
     </div>
 </div>

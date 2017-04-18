@@ -2,20 +2,23 @@
     'use strict';
 
     angular.module('accountsModule')
-        .controller('accountsController', ['accountsDataFactory', '$rootScope', function (accountsDataFactory, $rootScope) {
-            var scope = this;
+        .controller('accountsController',
+            ['accountsDataFactory', '$rootScope', 'accountEvents', 'modalConstants',
+                function (accountsDataFactory, $rootScope, accountEvents, modalConstants) {
+                    var scope = this;
+                    scope.txt = modalConstants;
 
-            scope.createAccount = function () {
-                $rootScope.$emit('account:create');
-            };
+                    scope.createAccount = function () {
+                        $rootScope.$emit(accountEvents.createModal);
+                    };
 
-            $rootScope.$on('accounts:update', function (event, data) {
-                scope.accounts = data;
-            });
+                    $rootScope.$on(accountEvents.update, function (event, data) {
+                        scope.accounts = data;
+                    });
 
-            accountsDataFactory.getAccounts().$promise
-                .then(function (accounts) {
-                    $rootScope.$emit('accounts:update', accounts);
-                });
-        }]);
+                    accountsDataFactory.getAccounts().$promise
+                        .then(function (accounts) {
+                            $rootScope.$emit(accountEvents.update, accounts);
+                        });
+                }]);
 })();

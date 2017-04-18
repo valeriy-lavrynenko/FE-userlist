@@ -2,75 +2,75 @@
 <div class="modal-header">
     <button type="button" class="close" aria-label="Close" ng-click="modalVm.$dismiss('close')"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="myModalLabel">
-        <span ng-show="modalVm.mode.isEdit()">Edit account</span>
-        <span ng-show="modalVm.mode.isCreate()" >Create account</span>
+        <span ng-show="modalVm.mode.isEdit()">{{modalVm.txt.title.edit}}</span>
+        <span ng-show="modalVm.mode.isCreate()" >{{modalVm.txt.title.create}}</span>
     </h4>
 </div>
 <form name="accountEditForm" novalidate>
     <div class="modal-body">
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uName.$valid, 'has-error':accountEditForm.uName.$dirty && accountEditForm.uName.$invalid}">
-            <label for="formName">Name</label>
+            <label for="formName"></label>
             <input type="text" class="form-control" id="formName" ng-model="modalVm.account.name" ng-pattern="/^[\w\s]{3,15}$/i" placeholder="Name" name="uName" required="">
-            <span class="help-block" ng-show="accountEditForm.uName.$error.required && accountEditForm.uName.$dirty">Field is required</span>
-            <span class="help-block" ng-show="accountEditForm.uName.$error.pattern && accountEditForm.uName.$dirty">Name - text field 3..15 characters</span>
+            <span class="help-block" ng-show="accountEditForm.uName.$error.required && accountEditForm.uName.$dirty">{{modalVm.txt.fields.validations.required}}</span>
+            <span class="help-block" ng-show="accountEditForm.uName.$error.pattern && accountEditForm.uName.$dirty"><{{modalVm.txt.fields.name.validation}}/span>
         </div>
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uLogin.$valid, 'has-error':accountEditForm.uLogin.$dirty && accountEditForm.uLogin.$invalid}">
-            <label for="formLogin">Login</label>
+            <label for="formLogin">{{modalVm.txt.fields.login.label}}</label>
             <input type="text" class="form-control" id="formLogin" ng-model="modalVm.account.login" ng-pattern="/^[\d\w]{5,15}$/i" placeholder="Login" name="uLogin" required="">
-            <span class="help-block" ng-show="accountEditForm.uLogin.$error.required && accountEditForm.uLogin.$dirty">Field is required</span>
-            <span class="help-block" ng-show="accountEditForm.uLogin.$error.pattern && accountEditForm.uLogin.$dirty">Login - text field 5..15 characters</span>
+            <span class="help-block" ng-show="accountEditForm.uLogin.$error.required && accountEditForm.uLogin.$dirty">{{modalVm.txt.fields.validations.required}}</span>
+            <span class="help-block" ng-show="accountEditForm.uLogin.$error.pattern && accountEditForm.uLogin.$dirty">{{modalVm.txt.fields.login.validation}}</span>
         </div>
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uAge.$valid, 'has-error':accountEditForm.uAge.$dirty && accountEditForm.uAge.$invalid}">
-            <label for="formAge">Age</label>
+            <label for="formAge">{{modalVm.txt.fields.age.label}}</label>
             <input type="number" class="form-control" id="formAge" ng-model="modalVm.account.age" placeholder="Age" name="uAge" required="" min="18" max="100" integer>
-            <span class="help-block" ng-show="accountEditForm.uAge.$error.required && accountEditForm.uAge.$dirty">Field is required</span>
-            <span class="help-block" ng-show="(accountEditForm.uAge.$error.number || accountEditForm.uAge.$error.min || accountEditForm.uAge.$error.max)  && accountEditForm.uAge.$dirty">Age - number field - integer 18..100</span>
+            <span class="help-block" ng-show="accountEditForm.uAge.$error.required && accountEditForm.uAge.$dirty">{{modalVm.txt.fields.validations.required}}</span>
+            <span class="help-block" ng-show="(accountEditForm.uAge.$error.number || accountEditForm.uAge.$error.min || accountEditForm.uAge.$error.max)  && accountEditForm.uAge.$dirty">{{modalVm.txt.fields.age.validation}}</span>
         </div>
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uGender.$valid, 'has-error':accountEditForm.uGender.$dirty && accountEditForm.uGender.$invalid}">
-            <label for="formGender">Gender</label>
+            <label for="formGender">{{modalVm.txt.fields.gender.label}}</label>
             <select class="form-control" id="formGender" ng-model="modalVm.account.gender" placeholder="Gender" name="uGender" required="">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
-            <span class="help-block" ng-show="accountEditForm.uGender.$error.required && accountEditForm.uGender.$dirty">Field is required</span>
+            <span class="help-block" ng-show="accountEditForm.uGender.$error.required && accountEditForm.uGender.$dirty">{{modalVm.txt.fields.validations.required}}</span>
         </div>
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uPhone.$valid, 'has-error':accountEditForm.uPhone.$dirty && accountEditForm.uPhone.$invalid}">
-            <label for="formPhone">Phone</label>
+            <label for="formPhone">{{modalVm.txt.fields.phone.label}}</label>
             <input type="text" class="form-control" id="formPhone" ng-model="modalVm.account.phoneNumber" ng-pattern="/\+380\(\d{2}\)\d{3}-\d{2}-\d{2}/g" placeholder="Phone" name="uPhone" required="">
-            <span class="help-block" ng-show="accountEditForm.uPhone.$error.required && accountEditForm.uPhone.$dirty">Field is required</span>
-            <span class="help-block" ng-show="accountEditForm.uPhone.$error.pattern && accountEditForm.uPhone.$dirty">PhoneNumber - text field with following mask: +380(##)###-##-## (# - is a digit)</span>
+            <span class="help-block" ng-show="accountEditForm.uPhone.$error.required && accountEditForm.uPhone.$dirty">{{modalVm.txt.fields.validations.required}}</span>
+            <span class="help-block" ng-show="accountEditForm.uPhone.$error.pattern && accountEditForm.uPhone.$dirty">{{modalVm.txt.fields.phone.validation}}</span>
         </div>
 
         <div class="form-group" ng-class="{'has-success':accountEditForm.uEmail.$valid, 'has-error':accountEditForm.uEmail.$dirty && accountEditForm.uEmail.$invalid}">
-            <label for="formEmail">Email address</label>
+            <label for="formEmail">{{modalVm.txt.fields.email.label}}</label>
             <input type="email" class="form-control" id="formEmail" ng-model="modalVm.account.email" placeholder="Email" name="uEmail" required="">
-            <span class="help-block" ng-show="accountEditForm.uEmail.$error.required && accountEditForm.uEmail.$dirty">Field is required</span>
-            <span class="help-block" ng-show="accountEditForm.uEmail.$error.email && accountEditForm.uEmail.$dirty">Email - text field with following requirements pattern: A@B.C</span>
+            <span class="help-block" ng-show="accountEditForm.uEmail.$error.required && accountEditForm.uEmail.$dirty">{{modalVm.txt.fields.validations.required}}</span>
+            <span class="help-block" ng-show="accountEditForm.uEmail.$error.email && accountEditForm.uEmail.$dirty">{{modalVm.txt.fields.email.validation}}</span>
         </div>
 
 
     </div>
 
     <div class="modal-footer">
-        <button type="reset" class="btn btn-default" ng-click="modalVm.$dismiss('close')">Close</button>
+        <button type="reset" class="btn btn-default" ng-click="modalVm.$dismiss('close')">{{modalVm.txt.buttons.close}}</button>
         <button
                 type="submit"
                 class="btn btn-primary"
                 ng-show="modalVm.mode.isCreate()"
                 ng-click="modalVm.$close(modalVm.account)"
                 data-dismiss="modal"
-                ng-disabled="accountEditForm.$invalid">Create</button>
+                ng-disabled="accountEditForm.$invalid">{{modalVm.txt.buttons.create}}</button>
         <button
                 type="submit"
                 class="btn btn-primary"
                 ng-show="modalVm.mode.isEdit()"
                 ng-click="modalVm.$close(modalVm.account)"
-                data-dismiss="modal" ng-disabled="accountEditForm.$invalid">Update</button>
+                data-dismiss="modal" ng-disabled="accountEditForm.$invalid">{{modalVm.txt.buttons.update}}</button>
     </div>
 
 </form>

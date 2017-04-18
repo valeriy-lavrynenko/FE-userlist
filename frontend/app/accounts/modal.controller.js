@@ -4,21 +4,22 @@
 
     angular.module('accountsModule')
         .controller('modalController',
-            ['accountsDataFactory', '$location', '$rootScope', '$uibModal',
-                function (accountsDataFactory, $location, $rootScope, $uibModal) {
+            ['accountsDataFactory', '$location', '$rootScope', '$uibModal', 'accountEvents', 'modalConstants',
+                function (accountsDataFactory, $location, $rootScope, $uibModal, accountEvents, modalConstants) {
 
                     var scope = this,
                         reloadAccounts = function () {
                             return accountsDataFactory.getAccounts().$promise
                                 .then(function (accounts) {
-                                    $rootScope.$emit('accounts:update', accounts);
+                                    $rootScope.$emit(accountEvents.update, accounts);
                                 });
                         },
                         reloadAccount = function (account) {
-                            $rootScope.$emit('account:update', account);
+                            $rootScope.$emit(accountEvents.update, account);
                             return reloadAccounts();
                         };
 
+                    scope.txt = modalConstants;
                     scope.removeCurrentAccount = function () {
 
                     };
@@ -39,7 +40,8 @@
                                     isEdit: function () {
                                         return mode == 'edit';
                                     }
-                                }
+                                };
+                                this.txt = modalConstants;
                             },
                             controllerAs: 'modalVm',
                             size: 'md'
@@ -48,7 +50,7 @@
                     };
 
 
-                    $rootScope.$on('account:edit', function (event, data) {
+                    $rootScope.$on(accountEvents.editModal, function (event, data) {
                         var modal = modalInstance(data, 'edit');
                         modal.result
                             .then(function (account) {
@@ -64,7 +66,7 @@
                             });
                     });
 
-                    $rootScope.$on('account:create', function (event, data) {
+                    $rootScope.$on(accountEvents.createModal, function (event, data) {
                         var modal = modalInstance({}, 'create');
 
                         modal.result
@@ -77,12 +79,13 @@
 
                     });
 
-                    $rootScope.$on('account:delete', function (event, data) {
+                    $rootScope.$on(accountEvents.deleteModal, function (event, data) {
                         var modal = $uibModal.open({
                             ariaLabelledBy: 'modal-title',
                             ariaDescribedBy: 'modal-body',
                             templateUrl: 'app/accounts/view/modal-remove.html',
                             controller: function () {
+                                this.txt = modalConstants;
                             },
                             bindToController: true,
                             controllerAs: 'modalVm',
