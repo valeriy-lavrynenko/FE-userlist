@@ -4,13 +4,13 @@
   "dependencies": {
     "jquery": "2.2.1",
     "bootstrap": "3.3.6",
-    "angular": "1.4.8",
-    "angular-route": "1.4.8",
-    "angular-resource": "1.4.8",
-    "highcharts": "4.2.3",
-    "angular-animate": "1.4.8",
-    "angular-touch": "1.4.8",
+    "angular": "1.6.4",
+    "angular-route": "1.6.4",
+    "angular-resource": "1.6.4",
+    "highcharts": "5.0.5",
+    "angular-animate": "1.6.4",
+    "angular-touch": "1.6.4",
     "angular-bootstrap": "2.5.0",
-    "highcharts-ng": "1.0.1"
+    "highcharts-ng": "1.1.0"
   }
 }
