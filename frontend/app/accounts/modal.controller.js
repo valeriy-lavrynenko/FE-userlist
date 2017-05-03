@@ -4,8 +4,8 @@
 
     angular.module('accountsModule')
         .controller('modalController',
-            ['accountsDataFactory', '$location', '$rootScope', '$uibModal', 'accountEvents', 'modalConstants',
-                function (accountsDataFactory, $location, $rootScope, $uibModal, accountEvents, modalConstants) {
+            ['accountsDataFactory', '$location', '$rootScope', '$uibModal', 'accountEvents', 'modalConstants', 'bsLoadingOverlayService',
+                function (accountsDataFactory, $location, $rootScope, $uibModal, accountEvents, modalConstants, bsLoadingOverlayService) {
 
                     var scope = this,
                         reloadAccounts = function () {
@@ -68,6 +68,9 @@
 
                     $rootScope.$on(accountEvents.createModal, function (event, data) {
                         var modal = modalInstance({}, 'create');
+                        bsLoadingOverlayService.start({
+                            referenceId: 'modal'
+                        });
 
                         modal.result
                             .then(function (account) {

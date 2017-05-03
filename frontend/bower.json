@@ -11,6 +11,9 @@
     "angular-animate": "1.6.4",
     "angular-touch": "1.6.4",
     "angular-bootstrap": "2.5.0",
-    "highcharts-ng": "1.1.0"
+    "highcharts-ng": "1.1.0",
+    "angular-loading-overlay": "1.1.1",
+    "font-awesome": "4.7.0",
+    "angular-fontawesome": "1.0.0"
   }
 }
