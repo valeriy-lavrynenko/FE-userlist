@@ -85,24 +85,32 @@
                             templateUrl: 'app/accounts/view/modal-remove.html',
                             controller: function () {
                                 this.txt = modalConstants;
+                                this.submit = function () {
+                                    var vm = this;
+                                    bsLoadingOverlayService.start({referenceId: 'modalDelete'});
+                                    return onSubmit()
+                                        .then(function () {
+                                            vm.$close();
+                                        })
+                                        .finally(function () {
+                                            bsLoadingOverlayService.stop({referenceId: 'modalDelete'});
+                                        })
+                                }
                             },
                             bindToController: true,
                             controllerAs: 'modalVm',
                             size: 'md'
-
                         });
 
-                        modal.result
-                            .then(function () {
-                                return accountsDataFactory.removeAccount({id: data.id}).$promise;
-                            })
-                            .then(function () {
-                                return reloadAccounts();
-                            })
-                            .then(function () {
-                                $location.url('/accounts');
-                            })
-
+                        function onSubmit () {
+                            return accountsDataFactory.removeAccount({id: data.id}).$promise
+                                .then(function () {
+                                    return reloadAccounts();
+                                })
+                                .then(function () {
+                                    $location.url('/accounts');
+                                })
+                        };
                     })
 
                 }

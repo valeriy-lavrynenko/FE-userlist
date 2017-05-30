@@ -1,3 +1,4 @@
+<div class="bs-loading-container" bs-loading-overlay bs-loading-overlay-reference-id="modalDelete">
 <div class="modal-header">
     <button type="button" class="close" ng-click="modalVm.$dismiss('close')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="myModalLabel">{{modalVm.txt.title.delete}}</h4>
@@ -6,6 +7,7 @@
     <div><h5>{{modalVm.txt.message.delete}}</h5></div>
     <div class="modal-footer">
         <button type="reset" class="btn btn-default" ng-click="modalVm.$dismiss('close')">{{modalVm.txt.buttons.cancel}}</button>
-        <button type="submit" class="btn btn-danger" ng-click="modalVm.$close()" data-dismiss="modal">{{modalVm.txt.buttons.ok}}</button>
+        <button type="submit" class="btn btn-danger" ng-click="modalVm.submit()" data-dismiss="modal">{{modalVm.txt.buttons.ok}}</button>
     </div>
+</div>
 </div>
