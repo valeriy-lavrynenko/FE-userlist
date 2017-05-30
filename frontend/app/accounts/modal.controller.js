@@ -11,7 +11,7 @@
                         reloadAccounts = function () {
                             return accountsDataFactory.getAccounts().$promise
                                 .then(function (accounts) {
-                                    $rootScope.$emit(accountEvents.update, accounts);
+                                    $rootScope.$emit(accountEvents.updateAll, accounts);
                                 });
                         },
                         reloadAccount = function (account) {
@@ -20,11 +20,8 @@
                         };
 
                     scope.txt = modalConstants;
-                    scope.removeCurrentAccount = function () {
 
-                    };
-
-                    var modalInstance = function (account, mode) {
+                    var modalInstance = function (account, mode, onSent) {
                         return $uibModal.open({
                             ariaLabelledBy: 'modal-title',
                             ariaDescribedBy: 'modal-body',
@@ -41,6 +38,17 @@
                                         return mode == 'edit';
                                     }
                                 };
+                                this.submit = function (data) {
+                                    var vm = this;
+                                    bsLoadingOverlayService.start({referenceId: 'modal'});
+                                    return onSent(data)
+                                        .then(function () {
+                                            vm.$close();
+                                        })
+                                        .finally(function () {
+                                            bsLoadingOverlayService.stop({referenceId: 'modal'});
+                                        })
+                                };
                                 this.txt = modalConstants;
                             },
                             controllerAs: 'modalVm',
@@ -49,36 +57,24 @@
                         })
                     };
 
-
                     $rootScope.$on(accountEvents.editModal, function (event, data) {
-                        var modal = modalInstance(data, 'edit');
-                        modal.result
-                            .then(function (account) {
-                                // TODO: disable  buttons
-                                // TODO: show spinner or progress indicator
-                                return accountsDataFactory.updateAccount({id: account.id}, account).$promise
-                                    .then(function () {
-                                        return reloadAccount(account);
-                                    });
-                            })
-                            .finally(function () {
-                                // TODO: remove spinner or else
-                            });
+                        var onSubmit = function (account) {
+                            return accountsDataFactory.updateAccount({id: account.id}, account).$promise
+                                .then(function () {
+                                    return reloadAccount(account);
+                                });
+                        };
+                        modalInstance(data, 'edit', onSubmit);
                     });
 
                     $rootScope.$on(accountEvents.createModal, function (event, data) {
-                        var modal = modalInstance({}, 'create');
-                        bsLoadingOverlayService.start({
-                            referenceId: 'modal'
-                        });
-
-                        modal.result
-                            .then(function (account) {
-                                return accountsDataFactory.createAccount(account).$promise;
-                            })
-                            .then(function () {
-                                return reloadAccounts();
-                            });
+                        var onSubmit = function (account) {
+                            return accountsDataFactory.createAccount(account).$promise
+                                .then(function () {
+                                    return reloadAccounts();
+                                });
+                        };
+                        modalInstance({}, 'create', onSubmit);
 
                     });
 

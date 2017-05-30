@@ -64,14 +64,14 @@
                 type="submit"
                 class="btn btn-primary"
                 ng-show="modalVm.mode.isCreate()"
-                ng-click="modalVm.$close(modalVm.account)"
+                ng-click="modalVm.submit(modalVm.account)"
                 data-dismiss="modal"
                 ng-disabled="accountEditForm.$invalid">{{modalVm.txt.buttons.create}}</button>
         <button
                 type="submit"
                 class="btn btn-primary"
                 ng-show="modalVm.mode.isEdit()"
-                ng-click="modalVm.$close(modalVm.account)"
+                ng-click="modalVm.submit(modalVm.account)"
                 data-dismiss="modal" ng-disabled="accountEditForm.$invalid">{{modalVm.txt.buttons.update}}</button>
     </div>
 
