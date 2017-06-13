@@ -58,24 +58,25 @@
                     };
 
                     $rootScope.$on(accountEvents.editModal, function (event, data) {
-                        var onSubmit = function (account) {
+                        function onSubmit(account) {
                             return accountsDataFactory.updateAccount({id: account.id}, account).$promise
                                 .then(function () {
                                     return reloadAccount(account);
                                 });
-                        };
+                        }
+
                         modalInstance(data, 'edit', onSubmit);
                     });
 
                     $rootScope.$on(accountEvents.createModal, function (event, data) {
-                        var onSubmit = function (account) {
+                        function onSubmit(account) {
                             return accountsDataFactory.createAccount(account).$promise
                                 .then(function () {
                                     return reloadAccounts();
                                 });
-                        };
-                        modalInstance({}, 'create', onSubmit);
+                        }
 
+                        modalInstance({}, 'create', onSubmit);
                     });
 
                     $rootScope.$on(accountEvents.deleteModal, function (event, data) {
@@ -102,7 +103,7 @@
                             size: 'md'
                         });
 
-                        function onSubmit () {
+                        function onSubmit() {
                             return accountsDataFactory.removeAccount({id: data.id}).$promise
                                 .then(function () {
                                     return reloadAccounts();

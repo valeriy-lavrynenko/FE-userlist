@@ -13,8 +13,8 @@
         <div class="modal-body">
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uName.$valid, 'has-error':accountEditForm.uName.$dirty && accountEditForm.uName.$invalid}">
-                <label for="formName"></label>
+                 ng-class="{'has-success':accountEditForm.uName.$valid && accountEditForm.uName.$touched, 'has-error':accountEditForm.uName.$dirty && accountEditForm.uName.$invalid}">
+                <label for="formName">{{modalVm.txt.fields.name.label}}</label>
                 <input type="text" class="form-control" id="formName" ng-model="modalVm.account.name"
                        ng-pattern="/^[\w\s]{3,15}$/i" placeholder="Name" name="uName" required="">
                 <span class="help-block"
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uLogin.$valid, 'has-error':accountEditForm.uLogin.$dirty && accountEditForm.uLogin.$invalid}">
+                 ng-class="{'has-success':accountEditForm.uLogin.$valid && accountEditForm.uLogin.$touched, 'has-error':accountEditForm.uLogin.$dirty && accountEditForm.uLogin.$invalid}">
                 <label for="formLogin">{{modalVm.txt.fields.login.label}}</label>
                 <input type="text" class="form-control" id="formLogin" ng-model="modalVm.account.login"
                        ng-pattern="/^[\d\w]{5,15}$/i" placeholder="Login" name="uLogin" required="">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uAge.$valid, 'has-error':accountEditForm.uAge.$dirty && accountEditForm.uAge.$invalid}">
+                 ng-class="{'has-success':accountEditForm.uAge.$valid && accountEditForm.uAge.$touched, 'has-error':accountEditForm.uAge.$dirty && accountEditForm.uAge.$invalid}">
                 <label for="formAge">{{modalVm.txt.fields.age.label}}</label>
                 <input type="number" class="form-control" id="formAge" ng-model="modalVm.account.age" placeholder="Age"
                        name="uAge" required="" min="18" max="100" integer>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uGender.$valid, 'has-error':accountEditForm.uGender.$dirty && accountEditForm.uGender.$invalid}">
+                 ng-class="{'has-success':accountEditForm.uGender.$valid && accountEditForm.uGender.$touched, 'has-error':accountEditForm.uGender.$dirty && accountEditForm.uGender.$invalid}">
                 <label for="formGender">{{modalVm.txt.fields.gender.label}}</label>
                 <select class="form-control" id="formGender" ng-model="modalVm.account.gender" placeholder="Gender"
                         name="uGender" required="">
@@ -56,7 +56,7 @@
             </div>
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uPhone.$valid, 'has-error':accountEditForm.uPhone.$dirty && accountEditForm.uPhone.$invalid}">
+                 ng-class="{'has-success':accountEditForm.uPhone.$valid && accountEditForm.uPhone.$touched, 'has-error':accountEditForm.uPhone.$dirty && accountEditForm.uPhone.$invalid}">
                 <label for="formPhone">{{modalVm.txt.fields.phone.label}}</label>
                 <input type="text" class="form-control" id="formPhone" ng-model="modalVm.account.phoneNumber"
                        ng-pattern="/\+380\(\d{2}\)\d{3}-\d{2}-\d{2}/g" placeholder="Phone" name="uPhone" required="">
@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group"
-                 ng-class="{'has-success':accountEditForm.uEmail.$valid, 'has-error':accountEditForm.uEmail.$dirty && accountEditForm.uEmail.$invalid}">
+                 ng-class="{'has-success':accountEditForm.uEmail.$valid && accountEditForm.uEmail.$touched, 'has-error':accountEditForm.uEmail.$dirty && accountEditForm.uEmail.$invalid}">
                 <label for="formEmail">{{modalVm.txt.fields.email.label}}</label>
                 <input type="email" class="form-control" id="formEmail" ng-model="modalVm.account.email"
                        placeholder="Email" name="uEmail" required="">
